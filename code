@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Milyoner Hızlı Şerit - Zenginliğin Kısayolu</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #141E30 0%, #243B55 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 30px 90px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF512F 0%, #DD2476 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🏎️';
+            position: absolute;
+            font-size: 300px;
+            opacity: 0.1;
+            top: -100px;
+            right: -100px;
+            transform: rotate(-15deg);
+        }
+
+        .header h1 {
+            font-size: 3.2em;
+            margin-bottom: 15px;
+            text-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 1;
+            letter-spacing: -1px;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+
+        .header .tagline {
+            font-size: 1.1em;
+            opacity: 0.85;
+            font-style: italic;
+            margin-top: 15px;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 4px solid #dee2e6;
+            overflow-x: auto;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 22px 32px;
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.05em;
+            transition: all 0.3s;
+            white-space: nowrap;
+            color: #495057;
+            font-weight: 700;
+            flex: 1;
+            min-width: 170px;
+        }
+
+        .nav-tab:hover {
+            background: #dee2e6;
+        }
+
+        .nav-tab.active {
+            background: white;
+            color: #DD2476;
+            border-bottom: 4px solid #DD2476;
+            margin-bottom: -4px;
+        }
+
+        .content {
+            padding: 50px 40px;
+            min-height: 500px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.6s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .roadmap-comparison {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        .roadmap-card {
+            padding: 35px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roadmap-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .roadmap-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+        }
+
+        .sidewalk {
+            background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+        }
+
+        .sidewalk::before {
+            background: #7f8c8d;
+        }
+
+        .slowlane {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+        }
+
+        .slowlane::before {
+            background: #e17055;
+        }
+
+        .fastlane {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+        }
+
+        .fastlane::before {
+            background: #0984e3;
+        }
+
+        .roadmap-card h3 {
+            margin-bottom: 20px;
+            font-size: 1.9em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #2d3436;
+        }
+
+        .roadmap-card .icon {
+            font-size: 2.2em;
+        }
+
+        .roadmap-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .roadmap-card li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            line-height: 1.7;
+            font-size: 1.05em;
+            color: #2d3436;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .roadmap-card li:last-child {
+            border-bottom: none;
+        }
+
+        .roadmap-card li::before {
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .sidewalk li::before {
+            content: '❌';
+        }
+
+        .slowlane li::before {
+            content: '🐌';
+        }
+
+        .fastlane li::before {
+            content: '✅';
+        }
+
+        .commandment-card {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            padding: 35px;
+            margin: 25px 0;
+            border-radius: 18px;
+            border-left: 8px solid #2e7d32;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .commandment-card h3 {
+            color: #1b5e20;
+            margin-bottom: 18px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .commandment-card p {
+            line-height: 1.9;
+            color: #2d3436;
+            font-size: 1.1em;
+            margin-bottom: 12px;
+        }
+
+        .quote {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 35px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 8px solid #ff6f00;
+            font-style: italic;
+            font-size: 1.25em;
+            color: #2d3436;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+            line-height: 1.8;
+        }
+
+        .necst-section {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 40px;
+            border-radius: 18px;
+            margin: 30px 0;
+        }
+
+        .necst-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .necst-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #1976d2;
+        }
+
+        .necst-card h4 {
+            color: #0d47a1;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .necst-card p {
+            color: #495057;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+
+        .wealth-calculator {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+            margin: 30px 0;
+        }
+
+        .input-group {
+            margin: 25px 0;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #2d3436;
+            font-weight: 700;
+            font-size: 1.15em;
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            font-size: 1.05em;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #DD2476;
+            box-shadow: 0 0 0 3px rgba(221, 36, 118, 0.1);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #FF512F 0%, #DD2476 100%);
+            color: white;
+            padding: 20px 55px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.25em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 700;
+            box-shadow: 0 6px 25px rgba(221, 36, 118, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(221, 36, 118, 0.5);
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            padding: 35px;
+            border-radius: 15px;
+            margin-top: 30px;
+            border: 3px solid #00b894;
+        }
+
+        .result-box h4 {
+            color: #00695c;
+            margin-bottom: 25px;
+            font-size: 1.7em;
+        }
+
+        .result-item {
+            padding: 18px 0;
+            border-bottom: 2px solid rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            color: #2d3436;
+            font-weight: 600;
+            font-size: 1.15em;
+        }
+
+        .result-value {
+            color: #00695c;
+            font-weight: 800;
+            font-size: 1.4em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffccbc 0%, #ffab91 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 6px solid #d84315;
+        }
+
+        .warning-box h4 {
+            color: #bf360c;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .action-steps {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            padding: 40px;
+            border-radius: 18px;
+            margin: 30px 0;
+        }
+
+        .step-card {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 15px;
+            border-left: 6px solid #c2185b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .step-card:hover {
+            transform: translateX(8px);
+        }
+
+        .step-card h4 {
+            color: #880e4f;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .step-card p {
+            color: #495057;
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+
+        .speed-box {
+            background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 3px solid #f57f17;
+            text-align: center;
+        }
+
+        .speed-box h3 {
+            color: #f57f17;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .speed-box .formula {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #2d3436;
+            margin: 20px 0;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 1024px) {
+            .roadmap-comparison,
+            .necst-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2.4em;
+            }
+        }
+
+        .myth-buster {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            padding: 35px;
+            border-radius: 18px;
+            margin: 30px 0;
+            border-left: 8px solid #c62828;
+        }
+
+        .myth-buster h3 {
+            color: #b71c1c;
+            margin-bottom: 20px;
+            font-size: 1.7em;
+        }
+
+        .myth-item {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .myth-item strong {
+            color: #c62828;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .truth {
+            color: #2e7d32;
+            font-weight: 600;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏎️ Milyoner Hızlı Şerit</h1>
+            <div class="subtitle">Zenginliğe Giden Ekspres Yol</div>
+            <div class="tagline">"Yavaş şeritten çık, hızlı şeride gir ve gençken zengin ol!"</div>
+            <div style="margin-top: 15px; opacity: 0.85; font-size: 0.95em;">MJ DeMarco - 2011</div>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="showTab('roadmaps')">3 Yol</button>
+            <button class="nav-tab" onclick="showTab('commandments')">NECST Formülü</button>
+            <button class="nav-tab" onclick="showTab('myths')">Yalanlar</button>
+            <button class="nav-tab" onclick="showTab('calculator')">Hesaplayıcı</button>
+            <button class="nav-tab" onclick="showTab('action')">Hızlı Başla</button>
+        </div>
+
+        <div class="content">
+            <!-- 3 Yol Tab -->
+            <div id="roadmaps" class="tab-content active">
+                <h2 style="color: #DD2476; margin-bottom: 40px; font-size: 2.3em;">🛣️ Zenginliğe 3 Farklı Yol</h2>
+
+                <div class="quote">
+                    "Zengin olmak için 40 yıl beklemek zorunda değilsiniz. Doğru yolu seçerseniz, 
+                    5-10 yılda milyoner olabilirsiniz. Soru şu: Hangi yoldasınız?"
+                </div>
+
+                <div class="roadmap-comparison">
+                    <div class="roadmap-card sidewalk">
+                        <h3><span class="icon">🚶</span> Kaldırım (Sidewalk)</h3>
+                        <ul>
+                            <li>Maaştan maaşa yaşama</li>
+                            <li>Bugünü yaşa, yarını düşünme</li>
+                            <li>Borçlarla yaşama</li>
+                            <li>Tasarruf yok, plan yok</li>
+                            <li>"Şansım açılır" umudu</li>
+                            <li>Lüks için borçlanma</li>
+                            <li>Şikayet, kurban psikolojisi</li>
+                        </ul>
+                        <p style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px; font-weight: 600; color: #c0392b;">
+                            ⚠️ Sonuç: Hayat boyu fakir, stresli, mutsuz. Tek umut: Piyango kazanmak!
+                        </p>
+                    </div>
+
+                    <div class="roadmap-card slowlane">
+                        <h3><span class="icon">🐢</span> Yavaş Şerit (Slowlane)</h3>
+                        <ul>
+                            <li>İyi eğitim al, iyi iş bul</li>
+                            <li>Her ay %10 biriktir</li>
+                            <li>Borsa fonlarına yatır</li>
+                            <li>40 yıl çalış, 65'te emekli ol</li>
+                            <li>Mütevazı yaşa, lüksten kaçın</li>
+                            <li>Bileşik faize güven</li>
+                            <li>Risk alma, güvenli kal</li>
+                        </ul>
+                        <p style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px; font-weight: 600; color: #d35400;">
+                            ⚠️ Sonuç: 65 yaşında zengin ama yaşlı, enerjisiz. Gençliğinizi feda ettiniz!
+                        </p>
+                    </div>
+
+                    <div class="roadmap-card fastlane">
+                        <h3><span class="icon">🚀</span> Hızlı Şerit (Fastlane)</h3>
+                        <ul>
+                            <li>İş kur, sistem yarat</li>
+                            <li>Değer üret, çok insana sat</li>
+                            <li>Ölçeklenebilir model</li>
+                            <li>5-10 yılda zengin ol</li>
+                            <li>Kendi işinin patronu ol</li>
+                            <li>Pasif gelir sistemleri</li>
+                            <li>Hesaplı risk al, hızlı öğren</li>
+                        </ul>
+                        <p style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.9); border-radius: 8px; font-weight: 600; color: #27ae60;">
+                            ✅ Sonuç: 30-40 yaşında zengin, özgür, enerjik. Hayatınızın tadını çıkarın!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="commandment-card">
+                    <h3>🎯 Hangi Yoldasınız?</h3>
+                    <p>
+                        <strong>Kaldırım:</strong> "Daha fazla kazansam daha mutlu olurum." → Gelir artar, harcama daha çok artar. Sonsuz döngü.
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>Yavaş Şerit:</strong> "Her ay %10 biriktirirsem 65'te zengin olurum." → Matematik doğru ama genç zenginlik yok!
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>Hızlı Şerit:</strong> "Sistemler ve iş kurarım, gençken zengin olurum." → Risk var ama ödül çok büyük!
+                    </p>
+                </div>
+
+                <div class="speed-box">
+                    <h3>⚡ Zenginlik Denklemi</h3>
+                    <p style="font-size: 1.15em; color: #2d3436; margin-bottom: 15px;">
+                        <strong>Yavaş Şerit:</strong> Zenginlik = İş (Zaman x Maaş) + Yatırım (Bileşik Faiz)
+                    </p>
+                    <div class="formula">⏰ + 💼 + 📈 = 💰 (40 yıl sonra)</div>
+                    <p style="font-size: 1.15em; color: #2d3436; margin-top: 25px; margin-bottom: 15px;">
+                        <strong>Hızlı Şerit:</strong> Zenginlik = İş Değeri x Çıkış (Satış/IPO)
+                    </p>
+                    <div class="formula">🏢 × 🚀 = 💰💰💰 (5-10 yıl)</div>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Yavaş Şeridin Tehlikeleri</h4>
+                    <p style="margin-bottom: 10px;">
+                        • <strong>Kontrol Yok:</strong> Borsayı, ekonomiyi, işinizi kontrol edemezsiniz<br>
+                        • <strong>Zaman Kaybı:</strong> En değerli varlığınız (gençlik) harcanıyor<br>
+                        • <strong>Matematik Sorunu:</strong> %10 tasarruf + %8 getiri = Çok yavaş büyüme<br>
+                        • <strong>Başarısızlık Riski:</strong> Bir kriz her şeyi sıfırlayabilir (2008 gibi)<br>
+                        • <strong>Fırsat Maliyeti:</strong> 40 yıl başka ne yapabilirdiniz?
+                    </p>
+                </div>
+
+                <div class="quote">
+                    "Yavaş şerit bir yalan değildir - işe yarar. Ama siz 65 yaşında zengin olmak mı istiyorsunuz, 
+                    yoksa 35 yaşında mı? İşte gerçek soru bu!"
+                </div>
+            </div>
+
+            <!-- NECST Formülü Tab -->
+            <div id="commandments" class="tab-content">
+                <h2 style="color: #DD2476; margin-bottom: 40px; font-size: 2.3em;">⚡ NECST: Hızlı Şerit Formülü</h2>
+
+                <div class="quote">
+                    "Hızlı şeridin 5 kuralı var: Need, Entry, Control, Scale, Time. Bu 5'ini birden sağlayan 
+                    iş modelleri sizi milyoner yapar!"
+                </div>
+
+                <div class="necst-section">
+                    <h3 style="color: #0d47a1; margin-bottom: 30px; font-size: 2em;">
+                        🎯 İş Fikrinizi NECST'le Test Edin
+                    </h3>
+
+                    <div class="necst-grid">
+                        <div class="necst-card">
+                            <h4>N - Need (İhtiyaç)</h4>
+                            <p>
+                                <strong>❌ Yanlış:</strong> "Ben ne yaparsam para kazanırım?"<br>
+                                <strong>✅ Doğru:</strong> "İnsanların hangi problemini çözebilirim?"
+                            </p>
+                            <p style="margin-top: 15px; font-weight: 600; color: #1976d2;">
+                                Kural: Kendiniz için değil, MÜŞTERİ için değer yaratın!
+                            </p>
+                            <p style="margin-top: 10px;">
+                                Örnek: "Ben yazılım seviyorum" → YANLIŞ<br>
+                                "E-ticaret sahipleri stok yönetiminde zorlanıyor" → DOĞRU
+                            </p>
+                        </div>
+
+                        <div class="necst-card">
+                            <h4>E - Entry (Giriş Engeli)</h4>
+                            <p>
+                                <strong>❌ Kolay giriş:</strong> Herkes yapabilir → Fazla rekabet, düşük kar<br>
+                                <strong>✅ Zor giriş:</strong> Beceri/sermaye gerekir → Az rekabet, yüksek kar
+                            </p>
+                            <p style="margin-top: 15px; font-weight: 600; color: #1976d2;">
+                                Kural: "Herkes yapabilir" işlerden KAÇIN!
+                            </p>
+                            <p style="margin-top: 10px;">
+                                Kötü: Blog açmak, dropshipping, MLM<br>
+                                İyi: Yazılım SaaS, patent gerektiren üretim, uzmanlık gerektiren hizmet
+                            </p>
+                        </div>
+
+                        <div class="necst-card">
+                            <h4>C - Control (Kontrol)</h4>
+                            <p>
+                                <strong>❌ Kontrol yok:</strong> Platform bağımlılığı, başkasının kuralları<br>
+                                <strong>✅ Tam kontrol:</strong> Kendi platformunuz, kendi kurallarınız
+                            </p>
+                            <p style="margin-top: 15px; font-weight: 600; color: #1976d2;">
+                                Kural: İşinizin her kararını SİZ verin!
+                            </p>
+                            <p style="margin-top: 10px;">
+                                Kötü: Amazon satıcılığı, YouTube kanalı, Uber sürücülüğü<br>
+                                İyi: Kendi e-ticaret siteniz, kendi SaaS'ınız, franchise verme
+                            </p>
+                        </div>
+
+                        <div class="necst-card">
+                            <h4>S - Scale (Ölçeklenebilirlik)</h4>
+                            <p>
+                                <strong>❌ Lineer büyüme:</strong> 2x çalışma = 2x para<br>
+                                <strong>✅ Üstel büyüme:</strong> 2x çalışma = 10x para
+                            </p>
+                            <p style="margin-top: 15px; font-weight: 600; color: #1976d2;">
+                                Kural: Büyüklük ve/veya Genişlik ile ölçeklenebilmeli!
+                            </p>
+                            <p style="margin-top: 10px;">
+                                <strong>Büyüklük:</strong> 10 müşteri yerine 10,000 müşteri<br>
+                                <strong>Genişlik:</strong> 1 ürün yerine 100 ürün<br>
+                                En iyisi: Her ikisi de!
+                            </p>
+                        </div>
+
+                        <div class="necst-card">
+                            <h4>T - Time (Zamandan Bağımsızlık)</h4>
+                            <p>
+                                <strong>❌ Zaman bağımlı:</strong> Çalışmazsam para yok<br>
+                                <strong>✅ Pasif gelir:</strong> Uyurken de para kazanıyorum
+                            </p>
+                            <p style="margin-top: 15px; font-weight: 600; color: #1976d2;">
+                                Kural: İş SİZSİZ çalışabilmeli!
+                            </p>
+                            <p style="margin-top: 10px;">
+                                Kötü: Danışmanlık (saat x ücret), serbest çalışma<br>
+                                İyi: SaaS ürünü, kitap telif hakkı, otomatik e-ticaret
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="commandment-card">
+                    <h3>🎯 NECST Skoru: İş Fikrinizi Puanlayın</h3>
+                    <p>
+                        Her kriter için 0-10 puan verin (0 = çok kötü, 10 = mükemmel):
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Need:</strong> Gerçek bir problemi çözüyor mu? Müşteri bunun için para öder mi?<br>
+                        <strong>Entry:</strong> Giriş engeli var mı? Herkes kolayca yapabilir mi?<br>
+                        <strong>Control:</strong> İşinizin kontrolü sizde mi? Dışarıdan kurallar var mı?<br>
+                        <strong>Scale:</strong> Büyük kitlelere satabilir misiniz? Ürün çoğaltılabilir mi?<br>
+                        <strong>Time:</strong> Siz olmadan da çalışır mı? Sistemi kurabilir misiniz?
+                    </p>
+                    <p style="margin-top: 20px; padding: 15px; background: white; border-radius: 10px;">
+                        <strong style="color: #1b5e20;">Puanlama:</strong><br>
+                        0-20: Yavaş şerit, kaçın!<br>
+                        21-35: Orta, geliştirilebilir<br>
+                        36-45: İyi, devam edin!<br>
+                        46-50: Mükemmel, HIZLA uygulayın! 🚀
+                    </p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Sahte Hızlı Şeritler - Bunlardan Kaçının!</h4>
+                    <p style="margin-bottom: 10px;">
+                        <strong>1. MLM (Network Marketing):</strong> Piramit benzeri, sürdürülemez<br>
+                        <strong>2. Borsa Ticareti:</strong> Kontrol yok, kumara benzer<br>
+                        <strong>3. Kripto Spekülasyonu:</strong> Değer yaratmıyorsunuz, sadece bahis oynuyorsunuz<br>
+                        <strong>4. Dropshipping (düşük marka):</strong> Giriş çok kolay, kar marjı minimal<br>
+                        <strong>5. Influencer Olmak:</strong> Platform kontrolünde, sürdürülemez<br>
+                        <strong>6. Gayrimenkul Çevirmek:</strong> Sermaye ve zaman yoğun, ölçeklenmiyor
+                    </p>
+                </div>
+
+                <div class="quote">
+                    "NECST 5/5 olan işler milyoner yapar. 3/5 veya 4/5 olanlar iyi gelir sağlar ama 
+                    gerçek servet yaratmaz. Mükemmellik için uğraşın!"
+                </div>
+            </div>
+
+            <!-- Yalanlar Tab -->
+            <div id="myths" class="tab-content">
+                <h2 style="color: #DD2476; margin-bottom: 40px; font-size: 2.3em;">💣 8 Büyük Yalan</h2>
+
+                <div class="quote">
+                    "Toplum size zengin olmanın 'doğru' yolunu öğretti. Ama o yol 40 yıl sürüyor ve 
+                    gerçek özgürlük vermiyor. İşte size söylenen en büyük yalanlar..."
+                </div>
+
+                <div class="myth-buster">
+                    <h3>🚫 Yalanları Paramparça Ediyoruz</h3>
+
+                    <div class="myth-item">
+                        <strong>YALAN #1: "İyi bir eğitim al, iyi bir iş bul"</strong>
+                        <p>
+                            Eğitim önemli ama diploma zenginlik garantisi değil. Üniversite mezunlarının 
+                            çoğu borçlu mezun oluyor ve ortalama maaşla çalışıyor. Zenginler iş yaratır, 
+                            iş aramaz!
+                        </p>
+                        <span class="truth">✅ GERÇEK: Finansal eğitim al ve iş kur!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #2: "Borsa yatırımı ile zengin olursun"</strong>
+                        <p>
+                            Borsa uzun vadede %8-10 getiri sağlar. $10,000 yatırırsanız 40 yıl sonra 
+                            ~$200,000 olur. Bu zenginlik mi? Hayır! Ayrıca kontrolünüz yok - kriz gelirse 
+                            %50 kaybedebilirsiniz.
+                        </p>
+                        <span class="truth">✅ GERÇEK: Borsa pasif gelir için iyi ama zenginlik yaratmak için yeterli değil!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #3: "Evim benim en büyük yatırımım"</strong>
+                        <p>
+                            Oturduğunuz ev bir YÜKÜMLÜLÜK. Krediniz, vergileriniz, bakımınız var. 
+                            Para çıkışı yapıyor, gelir getirmiyor. Evet, değer artabilir ama 40 yıl 
+                            sonra satarsanız ne faydası?
+                        </p>
+                        <span class="truth">✅ GERÇEK: İşiniz en büyük yatırımınızdır!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #4: "Borçtan kaçın"</strong>
+                        <p>
+                            KÖTÜ borçtan (tüketim) kaçın ama İYİ borç (iş için) kullanın! 
+                            Zenginler OPM (Other People's Money) kullanır. Bankadan kredi alıp 
+                            işinizi büyütmek, kredi kartıyla tatile gitmekten çok farklıdır.
+                        </p>
+                        <span class="truth">✅ GERÇEK: İyi borcu kötü borçtan ayır ve kullan!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #5: "Risk almak tehlikelidir"</strong>
+                        <p>
+                            En büyük risk hiç risk almamaktır! Güvenli işte 40 yıl çalışmak güvenli değil - 
+                            işten atılabilirsiniz, emekli maaşınız düşük olabilir. İş kurmak riski KONTROL 
+                            EDİLEBİLİR yapar.
+                        </p>
+                        <span class="truth">✅ GERÇEK: Eğitimli, hesaplı risk almak zenginliğin anahtarıdır!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #6: "Tutkunu takip et, para gelir"</strong>
+                        <p>
+                            HAYIR! Tutkunuz müşterilerin problemini çözmüyorsa para kazanamazsınız. 
+                            "Ben resim yapmayı seviyorum" → Kimse resminizi almıyorsa aç kalırsınız. 
+                            Önce değer yarat, sonra tutkunu dahil et.
+                        </p>
+                        <span class="truth">✅ GERÇEK: İhtiyaç + Değer = Para. Tutku bonus!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #7: "Para mutluluk getirmez"</strong>
+                        <p>
+                            Para mutluluk satın ALMAZ ama özgürlük satın alır! Fatura stresinden 
+                            kurtulmak, ailenizle zaman geçirmek, istediğiniz yerde yaşamak... 
+                            Bunlar mutluluk değil mi?
+                        </p>
+                        <span class="truth">✅ GERÇEK: Para seçenek ve özgürlük getirir. Bu çok değerlidir!</span>
+                    </div>
+
+                    <div class="myth-item">
+                        <strong>YALAN #8: "Zenginler şanslıdır / Doğru zamanda doğru yerde"</strong>
+                        <p>
+                            Şans bir faktör ama asıl faktör değil! MJ DeMarco limuzin şirketini 
+                            kriz sırasında kurdu ve sattı. Bill Gates, Steve Jobs, Elon Musk şanslı değil - 
+                            ÇALIŞKAN, VİZYONER ve SEBATLIlar!
+                        </p>
+                        <span class="truth">✅ GERÇEK: Şansı kendiniz yaratırsınız - hazırlık + fırsat!</span>
+                    </div>
+                </div>
+
+                <div class="commandment-card">
+                    <h3>💡 Yeni Düşünce Sistemi</h3>
+                    <p>
+                        <strong>Eski:</strong> "Düzenli maaş, güvenli iş, 40 yıl çalış, emekli ol"<br>
+                        <strong>Yeni:</strong> "İş kur, değer yarat, sistemi ölçeklendir, 30'unda emekli ol"
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Eski:</strong> "Her ay %10 biriktir, borsaya yatır, zengin ol (65'inde)"<br>
+                        <strong>Yeni:</strong> "İş geliri ile servet yarat, sonra pasif gelire çevir (35'inde)"
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Eski:</strong> "Diploma = Başarı"<br>
+                        <strong>Yeni:</strong> "Değer yaratma = Başarı"
+                    </p>
+                    <p style="margin-top: 15px;">
+                        <strong>Eski:</strong> "Güvenlik en önemlisi"<br>
+                        <strong>Yeni:</strong> "Özgürlük en önemlisi"
+                    </p>
+                </div>
+            </div>
+
+            <!-- Hesaplayıcı Tab -->
+            <div id="calculator" class="tab-content">
+                <h2 style="color: #DD2476; margin-bottom: 40px; font-size: 2.3em;">🧮 Hızlı Şerit Hesaplayıcı</h2>
+
+                <div class="quote">
+                    "Yavaş şerit 40 yıl alıyor. Hızlı şerit 5-10 yıl alıyor. Matematiği görün!"
+                </div>
+
+                <div class="wealth-calculator">
+                    <h3 style="color: #2d3436; margin-bottom: 30px; font-size: 1.8em;">
+                        📊 İş Modeliniz Ne Kadar Hızlı?
+                    </h3>
+
+                    <div class="input-group">
+                        <label>💰 Hedef Net Servet (TL)</label>
+                        <input type="number" id="targetWealth" placeholder="Örn: 10000000" value="10000000">
+                    </div>
+
+                    <div class="input-group">
+                        <label>📈 Yıllık Net İş Geliri Hedefi (TL)</label>
+                        <input type="number" id="annualProfit" placeholder="Örn: 2000000" value="2000000">
+                    </div>
+
+                    <div class="input-group">
+                        <label>🎯 İş Satış/Çıkış Katsayısı (Genelde 3-10x yıllık kar)</label>
+                        <input type="number" id="exitMultiple" placeholder="Örn: 5" value="5" min="1" max="20">
+                    </div>
+
+                    <div class="input-group">
+                        <label>⏱️ İşi Bu Seviyeye Çıkarmak Kaç Yıl Alır?</label>
+                        <input type="number" id="buildYears" placeholder="Örn: 7" value="7" min="1" max="20">
+                    </div>
+
+                    <div class="input-group">
+                        <label>📊 Karşılaştırma: Yavaş Şerit Aylık Yatırım (TL)</label>
+                        <input type="number" id="slowlaneInvestment" placeholder="Örn: 5000" value="5000">
+                    </div>
+
+                    <div class="input-group">
+                        <label>📈 Yavaş Şerit Yıllık Getiri (%)</label>
+                        <input type="number" id="slowlaneReturn" placeholder="Örn: 10" value="10" min="0" max="30">
+                    </div>
+
+                    <button class="btn" onclick="calculateFastlane()">Karşılaştırmayı Hesapla</button>
+
+                    <div id="fastlaneResult" style="display: none;">
+                        <div class="result-box">
+                            <h4>🚀 HIZLI ŞERİT SONUÇLARI</h4>
+                            <div class="result-item">
+                                <span class="result-label">İşin Satış Değeri:</span>
+                                <span class="result-value" id="businessValue"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Hedefe Ulaşma Süresi:</span>
+                                <span class="result-value" id="fastlaneTime"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Sonuç:</span>
+                                <span class="result-value" id="fastlaneOutcome"></span>
+                            </div>
+                        </div>
+
+                        <div class="result-box" style="background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%); border-color: #f57f17; margin-top: 25px;">
+                            <h4 style="color: #f57f17;">🐌 YAVAŞ ŞERİT SONUÇLARI</h4>
+                            <div class="result-item">
+                                <span class="result-label">Hedefe Ulaşma Süresi:</span>
+                                <span class="result-value" style="color: #f57f17;" id="slowlaneTime"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">O Zamana Kadar Toplam Yatırım:</span>
+                                <span class="result-value" style="color: #f57f17;" id="slowlaneInvested"></span>
+                            </div>
+                            <div class="result-item">
+                                <span class="result-label">Sonuç:</span>
+                                <span class="result-value" style="color: #f57f17;" id="slowlaneOutcome"></span>
+                            </div>
+                        </div>
+
+                        <div id="comparisonMessage" style="margin-top: 30px; padding: 30px; background: white; border-radius: 15px; border: 3px solid #DD2476;"></div>
+                    </div>
+                </div>
+
+                <div class="commandment-card" style="margin-top: 40px;">
+                    <h3>💡 Hesaplayıcı İpuçları</h3>
+                    <p>
+                        <strong>İş Satış Katsayısı:</strong> Teknoloji şirketleri 5-10x, E-ticaret 3-5x, 
+                        Servis işleri 2-4x civarında satılır. Rekabetin az olduğu, yüksek büyüme potansiyeli 
+                        olan işler daha yüksek katsayıya satılır.
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>Gerçekçi Olun:</strong> İlk işinizi 3-5 yılda orta seviyeye çıkarmak, 
+                        7-10 yılda satış seviyesine çıkarmak gerçekçi bir hedeftir.
+                    </p>
+                    <p style="margin-top: 12px;">
+                        <strong>Çıkış Stratejisi:</strong> Her işi satmak zorunda değilsiniz! Pasif hale 
+                        getirip işletmeye devam edebilir, temettü çekebilirsiniz.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Eylem Planı Tab -->
+            <div id="action" class="tab-content">
+                <h2 style="color: #DD2476; margin-bottom: 40px; font-size: 2.3em;">🚀 Hızlı Şeride Geçiş Planı</h2>
+
+                <div class="quote">
+                    "Bilgi güç değildir. Uygulanmış bilgi güçtür. Okumak yetmez - EYLEM gerek!"
+                </div>
+
+                <div class="action-steps">
+                    <h3 style="color: #880e4f; margin-bottom: 30px; font-size: 1.9em;">
+                        📋 12 Haftalık Hızlı Başlangıç
+                    </h3>
+
+                    <div class="step-card">
+                        <h4>Hafta 1-2: Zihniyet Değişimi</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • Milyoner Hızlı Şerit kitabını bitirin (tekrar okuyun önemli bölümleri)<br>
+                            • Şu anda hangi şeritte olduğunuzu tespit edin<br>
+                            • "Yavaş şerit" inançlarınızı yazın ve çürütün<br>
+                            • Başarılı girişimcilerin hikayelerini okuyun/izleyin<br>
+                            • Hedef: 5-10 yılda ne kadar servet istiyorsunuz? Yazın!
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4>Hafta 3-4: Problem Avcılığı</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • Her gün 5 problem kaydedin (sizin yaşadığınız veya gördüğünüz)<br>
+                            • İnsanların şikayetlerini dinleyin - her şikayet potansiyel iş!<br>
+                            • Online forumlarda, sosyal medyada insanların dertlerini bulun<br>
+                            • "İnsanlar ne için para öder?" sorusunu sorun<br>
+                            • 30+ problem listesi oluşturun
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4>Hafta 5-6: NECST Analizi</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • Her problemi NECST kriterleriyle değerlendirin<br>
+                            • En az 40/50 puan alan 3-5 fikir seçin<br>
+                            • Her fikir için basit çözüm önerileri geliştirin<br>
+                            • Rakip analizi yapın (kimler bu problemi çözüyor?)<br>
+                            • Sizin farkınız ne olacak? (Daha ucuz? Daha iyi? Daha hızlı?)
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4>Hafta 7-8: MVP (Minimum Viable Product)</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • En iyi fikriniz için basit prototip/demo hazırlayın<br>
+                            • Mükemmel olmasın - test edilebilir olsun!<br>
+                            • Landing page oluşturun (sadece 1 sayfa yeter)<br>
+                            • 10-20 potansiyel müşteriye gösterin, feedback alın<br>
+                            • "Bu problemi yaşıyor musunuz? Çözüm için para öder misiniz?" sorun
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4>Hafta 9-10: İlk Satış!</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • Ürününüzü geliştirin (feedback'lere göre)<br>
+                            • İLK SATIŞINIZI YAPIN! (Ücretsiz değil, ÜCRETLI!)<br>
+                            • Fiyat belirleyin - düşük başlayıp test edin<br>
+                            • Sosyal medya, forum, direkt satış - her yolu deneyin<br>
+                            • 1 müşteri bile bulun - bu çok önemli bir milestone!
+                        </p>
+                    </div>
+
+                    <div class="step-card">
+                        <h4>Hafta 11-12: Sistem ve Ölçeklendirme</h4>
+                        <p>
+                            <strong>Yapılacaklar:</strong><br>
+                            • Satış sonrası: Müşteri memnun mu? Ne geliştirilebilir?<br>
+                            • Satış sürecinizi dokümante edin (tekrarlanabilir sistem)<br>
+                            • İlk 10 müşteri hedefi koyun<br>
+                            • Marketing stratejisi belirleyin (SEO, ads, content, vs)<br>
+                            • 6 aylık plan yapın: Nereye ulaşmak istiyorsunuz?
+                        </p>
+                    </div>
+                </div>
+
+                <div class="commandment-card">
+                    <h3>⚡ Hızlı Şerit Kuralları</h3>
+                    <p><strong>1. EYLEM > Planlama:</strong> Mükemmel plan yerine hızlı uygulama</p>
+                    <p style="margin-top: 10px;"><strong>2. DEĞER > Tutku:</strong> Tutkunu değil, müşterilerin ihtiyacını takip et</p>
+                    <p style="margin-top: 10px;"><strong>3. HIZLI BAŞARILILIK > Yavaş Mükemmellik:</strong> İlk versiyonu hızla çıkar, sonra geliştir</p>
+                    <p style="margin-top: 10px;"><strong>4. ÖĞRENME > Diploma:</strong> Her gün yeni bir şey öğren, uygula</p>
+                    <p style="margin-top: 10px;"><strong>5. RISK > Güvenlik:</strong> Hesaplı risk al, büyü</p>
+                    <p style="margin-top: 10px;"><strong>6. SONUÇ > Süreç:</strong> Kaç saat çalıştığın değil, ne yarattığın önemli</p>
+                    <p style="margin-top: 10px;"><strong>7. SİSTEM > Kendin:</strong> Sen olmadan çalışan sistemler kur</p>
+                </div>
+
+                <div class="speed-box">
+                    <h3>🎯 5 Yıllık Hızlı Şerit Hedefi</h3>
+                    <p style="font-size: 1.15em; margin: 20px 0; color: #2d3436; line-height: 1.7;">
+                        <strong>Yıl 1:</strong> İş fikri bul, MVP oluştur, ilk müşterileri kazan (0-50 müşteri)<br>
+                        <strong>Yıl 2:</strong> Sistemi kur, pazarlama yap, büyüt (50-500 müşteri)<br>
+                        <strong>Yıl 3:</strong> Ekip kur, otomasyona geç, ölçeklendir (500-5000 müşteri)<br>
+                        <strong>Yıl 4:</strong> Pazar liderliği, marka yaratma, genişleme<br>
+                        <strong>Yıl 5:</strong> Çıkış stratejisi (Sat veya pasif hale getir) = 💰💰💰
+                    </p>
+                </div>
+
+                <div class="warning-box">
+                    <h4>⚠️ Kaçınılması Gerekenler</h4>
+                    <p style="margin-bottom: 10px;">
+                        • <strong>"Sadece 1 yıl daha çalışayım" Tuzağı:</strong> Asla bırakmayacaksınız, şimdi başlayın!<br>
+                        • <strong>Analiz Felci:</strong> Çok analiz, sıfır eylem. Harekete geçin!<br>
+                        • <strong>Mükemmeliyetçilik:</strong> "Daha iyi olmalı" derken asla başlamıyorsunuz<br>
+                        • <strong>Kolay İşler Tuzağı:</strong> Herkesin yaptığı işi yaparsanız, rekabet fazla kar yok<br>
+                        • <strong>Tek Kişilik Şov:</strong> Sistemi kurun, ekip oluşturun, delegasyon yapın
+                    </p>
+                </div>
+
+                <div class="quote">
+                    "En iyi zaman 5 yıl önceydi. İkinci en iyi zaman ŞİMDİ! Bugün harekete geçin, 
+                    5 yıl sonra kendinize teşekkür edeceksiniz. Hızlı şerit sizi bekliyor! 🚀"
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const navTabs = document.querySelectorAll('.nav-tab');
+            navTabs.forEach(tab => tab.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function calculateFastlane() {
+            const targetWealth = parseFloat(document.getElementById('targetWealth').value);
+            const annualProfit = parseFloat(document.getElementById('annualProfit').value);
+            const exitMultiple = parseFloat(document.getElementById('exitMultiple').value);
+            const buildYears = parseFloat(document.getElementById('buildYears').value);
+            const slowlaneInvestment = parseFloat(document.getElementById('slowlaneInvestment').value);
+            const slowlaneReturn = parseFloat(document.getElementById('slowlaneReturn').value) / 100;
+
+            if (!targetWealth || !annualProfit || !exitMultiple || !buildYears || !slowlaneInvestment || !slowlaneReturn) {
+                alert('Lütfen tüm alanları doldurun!');
+                return;
+            }
+
+            // Fastlane calculations
+            const businessValue = annualProfit * exitMultiple;
+            const fastlaneTime = buildYears;
+            
+            let fastlaneOutcome;
+            if (businessValue >= targetWealth) {
+                fastlaneOutcome = `✅ BAŞARILI! ${formatCurrency(businessValue)} değere ulaşırsınız!`;
+            } else {
+                const shortfall = targetWealth - businessValue;
+                fastlaneOutcome = `⚠️ Hedefe ${formatCurrency(shortfall)} eksik. Karı veya çıkış katsayısını artırın.`;
+            }
+
+            // Slowlane calculations
+            const monthlyInvestment = slowlaneInvestment;
+            const monthlyReturn = slowlaneReturn / 12;
+            
+            // Calculate months needed using compound interest formula
+            const months = Math.log((targetWealth * monthlyReturn / monthlyInvestment) + 1) / Math.log(1 + monthlyReturn);
+            const slowlaneYears = months / 12;
+            const slowlaneTotalInvested = monthlyInvestment * months;
+
+            let slowlaneTime, slowlaneOutcome;
+            if (slowlaneYears > 100 || isNaN(slowlaneYears)) {
+                slowlaneTime = '100+ yıl (Neredeyse imkansız!)';
+                slowlaneOutcome = '❌ Bu parametrelerle hedefi göremeyeceksiniz';
+            } else {
+                slowlaneTime = `${Math.ceil(slowlaneYears)} yıl`;
+                slowlaneOutcome = `${Math.ceil(slowlaneYears)} yıl sonra hedefe ulaşırsınız`;
+            }
+
+            // Display results
+            document.getElementById('businessValue').textContent = formatCurrency(businessValue);
+            document.getElementById('fastlaneTime').textContent = `${fastlaneTime} yıl`;
+            document.getElementById('fastlaneOutcome').textContent = fastlaneOutcome;
+            
+            document.getElementById('slowlaneTime').textContent = slowlaneTime;
+            document.getElementById('slowlaneInvested').textContent = formatCurrency(slowlaneTotalInvested);
+            document.getElementById('slowlaneOutcome').textContent = slowlaneOutcome;
+
+            // Comparison message
+            let message = '';
+            const timeDiff = Math.ceil(slowlaneYears) - fastlaneTime;
+            
+            if (timeDiff > 0) {
+                message = `
+                    <h3 style="color: #DD2476; margin-bottom: 20px; font-size: 1.8em;">🏆 KARŞILAŞTIRMA SONUCU</h3>
+                    <p style="font-size: 1.25em; color: #2d3436; line-height: 1.8; text-align: center;">
+                        <strong style="color: #00b894;">HIZLI ŞERİT:</strong> ${fastlaneTime} yılda hedefe ulaşırsınız!<br>
+                        <strong style="color: #f57f17;">YAVAŞ ŞERİT:</strong> ${Math.ceil(slowlaneYears)} yılda hedefe ulaşırsınız!<br><br>
+                        <span style="font-size: 1.4em; color: #DD2476; font-weight: bold;">
+                            ⚡ Hızlı şerit ${timeDiff} YIL DAHA HIZLI! ⚡
+                        </span>
+                    </p>
+                    <p style="margin-top: 25px; font-size: 1.1em; color: #636e72; text-align: center;">
+                        ${fastlaneTime} yıl mı çalışmak istersiniz yoksa ${Math.ceil(slowlaneYears)} yıl mı?<br>
+                        ${fastlaneTime + 30} yaşında zengin olmak mı yoksa ${Math.ceil(slowlaneYears) + 30} yaşında mı?<br><br>
+                        Seçim sizin! 🚀
+                    </p>
+                `;
+            } else {
+                message = `
+                    <h3 style="color: #DD2476; margin-bottom: 20px;">⚠️ DİKKAT</h3>
+                    <p style="font-size: 1.1em; color: #2d3436;">
+                        Yavaş şerit bu parametrelerle çok uzun sürüyor veya imkansız!
+                        Hızlı şerit tek gerçekçi seçeneğiniz gibi görünüyor.
+                    </p>
+                `;
+            }
+
+            document.getElementById('comparisonMessage').innerHTML = message;
+            document.getElementById('fastlaneResult').style.display = 'block';
+            document.getElementById('fastlaneResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function formatCurrency(amount) {
+            return new Intl.NumberFormat('tr-TR', {
+                style: 'currency',
+                currency: 'TRY',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+    </script>
+</body>
+</html>
